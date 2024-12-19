@@ -31,8 +31,8 @@ This project is an Event Management API built using Django. It enables users to 
 
 3. Create and activate a virtual environment:
    ```bash
-   python3 -m venv env
-   venv venv\Scripts\activate.bat
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
    ```
 
 4. Run database migrations:
