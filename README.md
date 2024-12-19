@@ -34,26 +34,53 @@ This project is an Event Management API built using Django. It enables users to 
    python -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
    ```
+4. Set up the database:
+   - Ensure that PostgreSQL is installed and running.
+   - Create a PostgreSQL database:
+     ```sql
+     CREATE DATABASE event_management;
+     ```
+   - Update your PostgreSQL username, password, and other details in the `DATABASES` configuration in `settings.py`.
+   
 
-4. Run database migrations:
+5. Run database migrations:
    ```bash
    python manage.py migrate
    ```
 
-5. Run the development server:
+6. Run the development server:
    ```bash
    python manage.py runserver
    ```
 
-6. The application will be running at `http://127.0.0.1:8000/`.
+7. The application will be running at `http://127.0.0.1:8000/`.
 
-## API Endpoints
+### Configuration
 
-- **GET /api/events/**: Retrieve a list of all events.
-- **POST /api/events/**: Create a new event.
-- **GET /api/events/1/**: Retrieve a specific event by its ID.
-- **PUT /api/events/1/**: Update an existing event.
-- **DELETE /api/events/1/**: Delete an event.
+#### Database Configuration
+
+The project uses PostgreSQL as the database backend. configure PostgreSQL connection in the `settings.py` file.
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',  # Database name 
+        'USER': 'postgres',  # Database user
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # Password for PostgreSQL user 
+        'HOST': 'localhost',  # Database host 
+        'PORT': '5432',  # PostgreSQL default port
+    }
+}
+```
+## Instructions
+
+- **`NAME`**: The name of PostgreSQL database.
+- **`USER`**: PostgreSQL username.
+- **`PASSWORD`**: The password for PostgreSQL user. store this securely, ideally using environment variables (like `os.getenv('DB_PASSWORD')`).
+- **`HOST`**: If PostgreSQL is running locally, this should be `localhost`. For remote databases, use the host address.
+- **`PORT`**: Default PostgreSQL port is `5432`.
+
 
 ## Project Structure
 
@@ -76,6 +103,14 @@ EventManagement/
 │   ├── asgi.py
 ├── manage.py
 ```
+
+## API Endpoints
+
+- **GET /api/events/**: Retrieve a list of all events.
+- **POST /api/events/**: Create a new event.
+- **GET /api/events/1/**: Retrieve a specific event by its ID.
+- **PUT /api/events/1/**: Update an existing event.
+- **DELETE /api/events/1/**: Delete an event.
 
 ## API Endpoints
 
@@ -180,9 +215,6 @@ EventManagement/
    To delete an event, send a `DELETE` request to `http://127.0.0.1:8000/api/events/{id}/` where `{id}` is the ID of the event to delete.
 
    
-
-  
-
 
 
 
